@@ -6,13 +6,14 @@ interface IRequest {
 }
 
 class TurnUserAdminUseCase {
+  // eslint-disable-next-line prettier/prettier
   constructor(private usersRepository: IUsersRepository) { }
 
   execute({ user_id }: IRequest): User {
-    const user = this.usersRepository.findById(user_id)
-    if (!user) throw new Error('User not found.')
-    this.usersRepository.turnAdmin(user)
-    return user
+    const user = this.usersRepository.findById(user_id);
+    if (!user) throw new Error("User not found.");
+    this.usersRepository.turnAdmin(user);
+    return user;
   }
 }
 
