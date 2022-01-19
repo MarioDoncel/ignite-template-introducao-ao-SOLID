@@ -1,0 +1,229 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "USERS API Documentation",
+    "description": "This is an API for users management",
+    "version": "1.0.0",
+    "contact": {
+      "email": "88mario.doncel@gmail.com"
+    }
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create a user",
+        "description": "Create a new user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "sample of name",
+                  "email": "sample@email.com"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "admin": {
+                      "type": "boolean"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "Date"
+                    },
+                    "created_at": {
+                      "type": "Date"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Already exists user with this email"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "List all users",
+        "description": "List all users",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "admin": {
+                        "type": "boolean"
+                      },
+                      "email": {
+                        "type": "string"
+                      },
+                      "updated_at": {
+                        "type": "Date"
+                      },
+                      "created_at": {
+                        "type": "Date"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Already exists user with this email"
+          }
+        }
+      }
+    },
+    "/users/:user_id": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create an user",
+        "description": "Create a new user",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "The id of the user that you are asking information",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "admin": {
+                      "type": "boolean"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "Date"
+                    },
+                    "created_at": {
+                      "type": "Date"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "User not found."
+          }
+        }
+      }
+    },
+    "/:user_id/admin": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Turn user an admin",
+        "description": "Turns an user to admin",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "The id of the user that you need to set as admin",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "admin": {
+                      "type": "boolean"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "Date"
+                    },
+                    "created_at": {
+                      "type": "Date"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "User not found."
+          }
+        }
+      }
+    }
+  }
+}
