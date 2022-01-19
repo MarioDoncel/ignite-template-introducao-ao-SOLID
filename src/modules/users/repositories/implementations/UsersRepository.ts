@@ -19,11 +19,12 @@ class UsersRepository implements IUsersRepository {
   }
 
   create({ name, email }: ICreateUserDTO): User {
-    const user = new User
+    const user: User = new User
     Object.assign(user, {
       name,
       email
     })
+    this.users.push(user)
     return user
   }
 
